@@ -1,5 +1,6 @@
 package com.example.statistics;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         TextView answer = findViewById(R.id.result);
         EditText editText = findViewById(R.id.ediText1);
         ArrayList<Double> numbers = new ArrayList<Double>();
@@ -48,11 +50,18 @@ public class MainActivity extends AppCompatActivity {
 
         Button Mean = findViewById(R.id.mean);
         Mean.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                double[] arr = new double[numbers.size()];
+                Calculate cal = new Calculate(arr);
+
                 for (int i=0; i<numbers.size(); i++){
-                    answer.setText(numbers.get(i)+" ");
+                    arr[i] = numbers.get(i);
                 }
+
+                double m = cal.calMean(arr);
+                answer.setText("Mean = "+String.valueOf(m));
             }
         });
 
