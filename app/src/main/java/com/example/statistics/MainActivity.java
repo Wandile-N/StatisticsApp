@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Double> numbers;
-    TextView answer = findViewById(R.id.result);
+    TextView answer;
     Calculate calc;
 
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         numbers = new ArrayList<Double>();
-        calc = new Calculate(numbers);
+        answer = findViewById(R.id.result);
 
     }
 
@@ -46,16 +46,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getMean(View view) {
+        calc = new Calculate(numbers);
         double mean = calc.calcMean();
         answer.setText("Mean = "+mean);
     }
 
     public void getVariance(View view) {
+        calc = new Calculate(numbers);
         double variance = calc.calcVariance();
         answer.setText("Variance = "+variance);
     }
 
     public void getStdDev(View view) {
+        calc = new Calculate(numbers);
         double stdDev = calc.calcStdDev();
         answer.setText("Std Dev = "+stdDev);
     }
