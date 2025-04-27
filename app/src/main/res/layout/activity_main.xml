@@ -17,7 +17,7 @@
         android:layout_margin="5dp"/>
 
     <EditText
-        android:id="@+id/ediText1"
+        android:id="@+id/editText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -30,7 +30,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/add"
         android:text="Add"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:onClick="doAdd"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,21 +43,24 @@
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:id="@+id/mean"
-            android:text="Mean" />
+            android:text="Mean"
+            android:onClick="getMean" />
 
         <Button
             android:layout_width="0dip"
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:id="@+id/variance"
-            android:text="Variance" />
+            android:text="Variance"
+            android:onClick="getVariance" />
 
         <Button
             android:id="@+id/std_dev"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:text="Std_Dev" />
+            android:text="Std_Dev"
+            android:onClick="getStdDev" />
 
     </LinearLayout>
 

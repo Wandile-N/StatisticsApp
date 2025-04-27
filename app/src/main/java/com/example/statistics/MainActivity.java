@@ -16,6 +16,10 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    ArrayList<Double> numbers;
+    TextView answer = findViewById(R.id.result);
+    Calculate calc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,48 +32,31 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        TextView answer = findViewById(R.id.result);
-        EditText editText = findViewById(R.id.ediText1);
-        ArrayList<Double> numbers = new ArrayList<Double>();
+        numbers = new ArrayList<Double>();
+        calc = new Calculate(numbers);
 
-        Button Add = findViewById(R.id.add);
-        Add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String input = editText.getText().toString();
-                double decimalValue = 0.0;
-                if (input.isEmpty()) {
-                    editText.setError("This field cannot be empty!");
-                } else {
-                    decimalValue = Double.parseDouble(input);
-                }
-                numbers.add(decimalValue);
-                editText.setText("");
-            }
-        });
+    }
 
-        Button Mean = findViewById(R.id.mean);
-        Mean.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                double[] arr = new double[numbers.size()];
-                Calculate cal = new Calculate(arr);
+    public void doAdd(View v){
+        EditText e = (EditText)findViewById(R.id.editText1);
+        String value = e.getText().toString();
+        Double d = Double.parseDouble(value);
+        numbers.add(d);
+        e.setText("");
+    }
 
-                for (int i=0; i<numbers.size(); i++){
-                    arr[i] = numbers.get(i);
-                }
+    public void getMean(View view) {
+        double mean = calc.calcMean();
+        answer.setText("Mean = "+mean);
+    }
 
-                double m = cal.calMean(arr);
-                answer.setText("Mean = "+String.valueOf(m));
-            }
-        });
+    public void getVariance(View view) {
+        double variance = calc.calcVariance();
+        answer.setText("Variance = "+variance);
+    }
 
-        // Should add this code in every click from the mean, variance, std_dev buttons
-        double[] arr = new double[numbers.size()];
-        for (int i=0; i<numbers.size(); i++){
-            arr[i] = numbers.get(i);
-        }
-
+    public void getStdDev(View view) {
+        double stdDev = calc.calcStdDev();
+        answer.setText("Std Dev = "+stdDev);
     }
 }
