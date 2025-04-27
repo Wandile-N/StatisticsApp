@@ -56,5 +56,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Should add this code in every click from the mean, variance, std_dev buttons
+        double[] arr = new double[numbers.size()];
+        for (int i=0; i<numbers.size(); i++){
+            arr[i] = numbers.get(i);
+        }
+
     }
 }
